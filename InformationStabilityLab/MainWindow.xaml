@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InformationStabilityLab"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Information Stability Lab" Height="460" Width="796" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="387,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="ButtonExecute" Content="Execute" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <StatusBar Height="32" VerticalAlignment="Bottom" Background="#FF007ACC" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,0,-2">
+            <Label x:Name="LabelStatus" Content="Connecting to database..." HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
+        </StatusBar>
+
     </Grid>
 </Window>

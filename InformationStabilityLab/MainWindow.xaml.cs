@@ -1,28 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
+using System.Configuration;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace InformationStabilityLab
 {
+    /// <inheritdoc cref="xoxo" />
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
+        private MySqlConnection Connection { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            Connect();
+        }
+
+        private void Connect()
+        {
+            try
+            {
+                Connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["localhost"].ConnectionString);
+                Connection.Open();
+                LabelStatus.Content = "Connected successfully";
+            }
+            catch
+            {
+                Connection.Close();
+                LabelStatus.Content = "Cannot connect";
+            }
         }
     }
 }
