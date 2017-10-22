@@ -1,13 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Configuration;
-using System.Windows;
 
 namespace InformationStabilityLab
 {
-    /// <inheritdoc cref="xoxo" />
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class MainWindow
     {
         private MySqlConnection Connection { get; set; }
