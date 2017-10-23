@@ -1,5 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using System.Configuration;
+﻿using System.Configuration;
+using System.Windows;
+using MySql.Data.MySqlClient;
 
 namespace InformationStabilityLab
 {
@@ -29,6 +30,22 @@ namespace InformationStabilityLab
             {
                 Connection.Close();
                 LabelStatus.Content = "Cannot connect";
+            }
+        }
+
+        private void ButtonExecute_Click(object sender, RoutedEventArgs e)
+        {
+            var command = new MySqlCommand("SELECT * FROM informationstabilitylabdatabase.allowedtable;", Connection);
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var id = reader.GetInt32("id");
+                    var number = reader.GetInt32("number");
+                    var name = reader.GetString("name");
+
+                    ListViewRecords.Items.Add(new {id, number, name });
+                }
             }
         }
     }
