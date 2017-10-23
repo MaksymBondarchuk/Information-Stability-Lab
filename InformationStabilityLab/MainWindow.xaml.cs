@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Windows;
 using MySql.Data.MySqlClient;
 
@@ -35,17 +36,26 @@ namespace InformationStabilityLab
 
         private void ButtonExecute_Click(object sender, RoutedEventArgs e)
         {
-            var command = new MySqlCommand("SELECT * FROM informationstabilitylabdatabase.allowedtable;", Connection);
-            using (MySqlDataReader reader = command.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                var commandText = $"SELECT * FROM informationstabilitylabdatabase.allowedtable WHERE number > {TextBoxSqlParameter.Text}";
+                var command = new MySqlCommand(commandText, Connection);
+                using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    var id = reader.GetInt32("id");
-                    var number = reader.GetInt32("number");
-                    var name = reader.GetString("name");
+                    ListViewRecords.Items.Clear();
+                    while (reader.Read())
+                    {
+                        var id = reader.GetInt32("id");
+                        var number = reader.GetInt32("number");
+                        var name = reader.GetString("name");
 
-                    ListViewRecords.Items.Add(new {id, number, name });
+                        ListViewRecords.Items.Add(new { id, number, name });
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

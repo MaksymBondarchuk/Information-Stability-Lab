@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="Information Stability Lab" Height="460" Width="796" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="387,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextBoxSqlParameter" Height="123" Margin="90,10,10,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" AcceptsReturn="True"/>
         <Button x:Name="ButtonExecute" Content="Execute" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="ButtonExecute_Click"/>
         <StatusBar Height="32" VerticalAlignment="Bottom" Background="#FF007ACC" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,0,-2">
             <Label x:Name="LabelStatus" Content="Connecting to database..." HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
         </StatusBar>
-        <ListView x:Name="ListViewRecords" Margin="10,35">
+        <ListView x:Name="ListViewRecords" Margin="10,138,10,35">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="id" Width="50" DisplayMemberBinding="{Binding id}"/>
